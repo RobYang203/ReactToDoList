@@ -1,0 +1,19 @@
+{
+  "name": "reacttodolist",
+  "version": "1.0.0",
+  "description": "practice react life cycle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobYang203/ReactToDoList.git"
+  },
+  "author": "tony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobYang203/ReactToDoList/issues"
+  },
+  "homepage": "https://github.com/RobYang203/ReactToDoList#readme"
+}
