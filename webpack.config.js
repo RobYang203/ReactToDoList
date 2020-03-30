@@ -22,6 +22,11 @@ module.exports={
 				test:/\.(js|jsx)$/,//判斷是否為".js or jsx"
 				loader:"babel-loader",//編譯器，把符合條件的檔案，編譯成指定樣式
 				exclude:/node_modules/
+			},
+			{
+				test:/\.css$/,//判斷是否為".css"
+				loader:["style-loader","css-loader"],//編譯器，把符合條件的檔案，編譯成指定樣式
+				exclude:/node_modules/
 			}
 		]
 	},
