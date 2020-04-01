@@ -13,7 +13,10 @@ export default class App extends React.Component{
         this.deletItem = this.deletItem.bind(this);
         this.createItemCompList = this.createItemCompList.bind(this);
 
-        this.state = {changeCount:0};
+
+        this.state = {
+            modifyType:''
+        };
     }
 
     insertItem(text){
@@ -30,18 +33,18 @@ export default class App extends React.Component{
             description:text
         });
 
-        this.setState({changeCount:1});
+        this.setState({modifyType:'w'});
     }
 
     finishItem(pos , type){
         const tar = this.DoThingList[pos];
         tar.type = type;
-        this.setState({changeCount:1});
+        this.setState({modifyType:'f'});
     }
     
     deletItem(pos){
         this.DoThingList.splice(pos,1);
-        this.setState({changeCount:1});
+        this.setState({modifyType:'d'});
     }
 
     createItemCompList(){
@@ -49,20 +52,18 @@ export default class App extends React.Component{
         this.DoThingList.map((data,i)=>{
             data.position = i;
             if(data.type !== 'd')
-                this.DoThingCompList.push(<DoThingItem data={data} finishItem={this.finishItem} deletItem={this.deletItem}/>);
+                this.DoThingCompList.push(<DoThingItem key={`item-${i}`} data={data} finishItem={this.finishItem} deletItem={this.deletItem}/>);
         });
 
-        this.setState({changeCount:0});
     }
 
-    //mounting
-    componentWillMount(){
 
-    }
 
     //mounting & updating
     static getDerivedStateFromProps(nextProps,preState){
-
+        preState = preState || {};
+        preState.modifyType= preState.modifyType || '';
+        return preState;
     }
     
     //mounting & updating
@@ -83,12 +84,8 @@ export default class App extends React.Component{
     }
 
     //updating
-    componentWillReceiveProps(nextProps){
-
-    }
-
     shouldComponentUpdate(nextProps,nextState){
-        if(nextState.changeCount === 0){
+        if(nextState.modifyType === ''){
             return false;
         }
 
@@ -97,12 +94,12 @@ export default class App extends React.Component{
         return true;
     }
 
-    componentWillUpdate(nextProps,nextState){
-
+    getSnapshotBeforeUpdate(preProps,preState){
+        return null;
     }
 
-    getSnapshotBeforeUpdate(preProps,preState){
-
+    componentDidUpdate(prevProps, prevState, snapshot){
+        
     }
 
     //Unmounting
